@@ -50,16 +50,6 @@ jobs:
     strategy:
         matrix: ${{ fromJson(needs.config.outputs.rootfs_matrix) }}
     steps:
-      - name: Get more disk space
-        uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: false
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          swap-storage: true
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -98,16 +88,6 @@ jobs:
     strategy:
         matrix: ${{ fromJson(needs.config.outputs.build_matrix) }}
     steps:
-      - name: Get more disk space
-        uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: false
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          swap-storage: true
-
       - name: Checkout code
         uses: actions/checkout@v4
 
