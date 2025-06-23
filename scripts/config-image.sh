@@ -131,7 +131,9 @@ tar -xpJf "ubuntu-${RELASE_VERSION}-preinstalled-${FLAVOR}-arm64.rootfs.tar.xz" 
 # Mount the root filesystem
 setup_mountpoint $chroot_dir
 
-chroot $chroot_dir apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F02122ECF25FB4D7
+#chroot $chroot_dir apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F02122ECF25FB4D7
+chroot $chroot_dir gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F02122ECF25FB4D7
+
 # Update packages
 chroot $chroot_dir apt-get update
 chroot $chroot_dir apt-get -y upgrade
