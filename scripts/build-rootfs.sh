@@ -40,6 +40,8 @@ cd "${tmp_dir}" || exit 1
 git clone https://github.com/Joshua-Riek/livecd-rootfs
 cd livecd-rootfs || exit 1
 
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F02122ECF25FB4D7
+
 # Install build deps
 apt-get update
 apt-get build-dep . -y
