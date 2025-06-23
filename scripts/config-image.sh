@@ -132,7 +132,7 @@ tar -xpJf "ubuntu-${RELASE_VERSION}-preinstalled-${FLAVOR}-arm64.rootfs.tar.xz" 
 setup_mountpoint $chroot_dir
 
 #chroot $chroot_dir apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F02122ECF25FB4D7
-chroot $chroot_dir gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F02122ECF25FB4D7
+#chroot $chroot_dir gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F02122ECF25FB4D7
 
 # Update packages
 chroot $chroot_dir apt-get update
@@ -145,10 +145,10 @@ fi
 
 # Download and install U-Boot
 if [[ ${LAUNCHPAD} == "Y" ]]; then
-    #chroot ${chroot_dir} apt-get -y install "u-boot-${BOARD}"
-    chroot ${chroot_dir} wget http://ppa.launchpad.net/jjriek/rockchip/ubuntu/pool/main/u/u-boot-radxa-rk3588/u-boot-orangepi-cm5_2017.09+20240806.gitf73b1eed-2_arm64.deb
-    chroot ${chroot_dir} mv u-boot-orangepi-cm5_2017.09+20240806.gitf73b1eed-2_arm64.deb "u-boot-${BOARD}"
-    chroot ${chroot_dir} dpkg -i "u-boot-${BOARD}"
+    chroot ${chroot_dir} apt-get -y install "u-boot-${BOARD}"
+    #chroot ${chroot_dir} wget http://ppa.launchpad.net/jjriek/rockchip/ubuntu/pool/main/u/u-boot-radxa-rk3588/u-boot-orangepi-cm5_2017.09+20240806.gitf73b1eed-2_arm64.deb
+    #chroot ${chroot_dir} mv u-boot-orangepi-cm5_2017.09+20240806.gitf73b1eed-2_arm64.deb "u-boot-${BOARD}"
+    #chroot ${chroot_dir} dpkg -i "u-boot-${BOARD}"
 else
     cp "${uboot_package}" ${chroot_dir}/tmp/
     chroot ${chroot_dir} dpkg -i "/tmp/${uboot_package}"
