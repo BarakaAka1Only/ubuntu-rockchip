@@ -41,7 +41,7 @@ git clone https://github.com/Joshua-Riek/livecd-rootfs
 cd livecd-rootfs || exit 1
 
 #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F02122ECF25FB4D7
-gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F02122ECF25FB4D7
+#gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F02122ECF25FB4D7
 
 # Install build deps
 apt-get update
