@@ -146,8 +146,9 @@ fi
 # Download and install U-Boot
 if [[ ${LAUNCHPAD} == "Y" ]]; then
     #chroot ${chroot_dir} apt-get -y install "u-boot-${BOARD}"
-    chroot ${chroot_dir} wget http://ppa.launchpad.net/jjriek/rockchip/ubuntu/pool/main/u/u-boot-radxa-rk3588/u-boot-orangepi-cm5_2017.09+20240806.gitf73b1eed-2_arm64.deb
-    chroot ${chroot_dir} mv u-boot-orangepi-cm5_2017.09+20240806.gitf73b1eed-2_arm64.deb "u-boot-${BOARD}"
+    #chroot ${chroot_dir} wget http://ppa.launchpad.net/jjriek/rockchip/ubuntu/pool/main/u/u-boot-radxa-rk3588/u-boot-orangepi-cm5_2017.09+20240806.gitf73b1eed-2_arm64.deb
+    chroot ${chroot_dir} wget http://192.168.2.249/u-boot-orangepi-cm5_baraka.deb
+    chroot ${chroot_dir} mv u-boot-orangepi-cm5_baraka.deb "u-boot-${BOARD}"
     chroot ${chroot_dir} dpkg -i "u-boot-${BOARD}"
 else
     cp "${uboot_package}" ${chroot_dir}/tmp/
