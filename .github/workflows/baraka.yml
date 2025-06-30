@@ -6,7 +6,7 @@ on:
 jobs:
 
   config:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     name: Create martrix
     outputs:
       build_matrix: ${{ steps.build.outputs.build_matrix }}
