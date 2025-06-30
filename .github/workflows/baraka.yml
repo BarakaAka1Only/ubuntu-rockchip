@@ -92,7 +92,7 @@ jobs:
             if-no-files-found: error
 
   build:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     needs: [rootfs, config]
     name: Build image 
     strategy:
