@@ -30,6 +30,10 @@ function config_image_hook__orangepi-cm5() {
         chroot "${rootfs}" apt-get -y install wiringpi-opi libwiringpi2-opi libwiringpi-opi-dev
         echo "BOARD=orangepicm5" > "${rootfs}/etc/orangepi-release"
     fi
+    
+    if [ "${suite}" == "plucky" ]; then
+        echo "BOARD=orangepicm5" > "${rootfs}/etc/orangepi-release"
+    fi
 
     return 0
 }
