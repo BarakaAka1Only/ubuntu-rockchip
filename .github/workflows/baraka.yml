@@ -6,7 +6,7 @@ on:
 jobs:
 
   config:
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
     name: Create martrix
     outputs:
       build_matrix: ${{ steps.build.outputs.build_matrix }}
@@ -44,7 +44,7 @@ jobs:
             echo "rootfs_matrix={\"include\":[${rootfs_matrix::-1}]}" >> $GITHUB_OUTPUT
 
   rootfs:
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
     name: Build rootfs 
     needs: [config]
     strategy:
@@ -92,7 +92,7 @@ jobs:
             if-no-files-found: error
 
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
     needs: [rootfs, config]
     name: Build image 
     strategy:
