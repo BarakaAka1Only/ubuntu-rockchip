@@ -44,7 +44,7 @@ cd livecd-rootfs || exit 1
 #gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys F02122ECF25FB4D7
 
 # Install build deps
-apt-get update
+#apt-get update
 apt-get build-dep . -y
 
 # Build the package
