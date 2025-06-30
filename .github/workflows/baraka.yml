@@ -44,7 +44,7 @@ jobs:
             echo "rootfs_matrix={\"include\":[${rootfs_matrix::-1}]}" >> $GITHUB_OUTPUT
 
   rootfs:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     name: Build rootfs 
     needs: [config]
     strategy:
