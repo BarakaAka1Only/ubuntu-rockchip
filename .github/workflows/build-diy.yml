@@ -6,7 +6,7 @@ on:
       board:
         description: 'Board to build'
         required: true
-        default: 'cyber3588-aib'
+        default: 'orangepi-3b'
         type: choice
         options:
           - aio-3588l
@@ -49,15 +49,16 @@ on:
       suite:
         description: 'Ubuntu version'
         required: true
-        default: 'noble'
+        default: 'plucky'
         type: choice
         options:
           - jammy
           - noble
+          - plucky
       flavor:
         description: 'Flavor (desktop or server)'
         required: true
-        default: 'desktop'
+        default: 'server'
         type: choice
         options:
           - desktop
@@ -109,8 +110,8 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4.3.3
         with:
-            name: ubuntu-${{ matrix.suite == 'jammy' && '22.04' || matrix.suite == 'noble' && '24.04' }}-${{ matrix.suite }}-${{ matrix.flavor }}-arm64-rootfs
-            path: ./build/ubuntu-${{ matrix.suite == 'jammy' && '22.04' || matrix.suite == 'noble' && '24.04' }}-${{ matrix.suite }}-${{ matrix.flavor }}-arm64.rootfs.tar.xz
+            name: ubuntu-${{ matrix.suite == 'jammy' && '22.04' || matrix.suite == 'noble' && '24.04' || matrix.suite == 'plucky' && '25.04' }}-${{ matrix.suite }}-${{ matrix.flavor }}-arm64-rootfs
+            path: ./build/ubuntu-${{ matrix.suite == 'jammy' && '22.04' || matrix.suite == 'noble' && '24.04' || matrix.suite == 'plucky' && '25.04' }}-${{ matrix.suite }}-${{ matrix.flavor }}-arm64.rootfs.tar.xz
             if-no-files-found: error
 
   kernel:
@@ -155,7 +156,7 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4.3.3
         with:
-            name: linux-rockchip-${{ matrix.suite == 'jammy' && '5.10' || matrix.suite == 'noble' && '6.1' }}
+            name: linux-rockchip-${{ matrix.suite == 'jammy' && '5.10' || matrix.suite == 'noble' && '6.1' || matrix.suite == 'plucky' && '6.12' }}
             path: ./build/linux-*.deb
             if-no-files-found: error
 
@@ -205,13 +206,13 @@ jobs:
       - name: Checkout rootfs
         uses: actions/download-artifact@v4.1.2
         with:
-            name: ubuntu-${{ matrix.suite == 'jammy' && '22.04' || matrix.suite == 'noble' && '24.04' }}-${{ matrix.suite }}-${{ matrix.flavor }}-arm64-rootfs
+            name: ubuntu-${{ matrix.suite == 'jammy' && '22.04' || matrix.suite == 'noble' && '24.04' || matrix.suite == 'plucky' && '25.04' }}-${{ matrix.suite }}-${{ matrix.flavor }}-arm64-rootfs
             path: ./build/
 
       - name: Checkout kernel
         uses: actions/download-artifact@v4.1.2
         with:
-            name: linux-rockchip-${{ matrix.suite == 'jammy' && '5.10' || matrix.suite == 'noble' && '6.1' }}
+            name: linux-rockchip-${{ matrix.suite == 'jammy' && '5.10' || matrix.suite == 'noble' && '6.1' || matrix.suite == 'plucky' && '6.12' }}
             path: ./build/
 
       - name: Build
